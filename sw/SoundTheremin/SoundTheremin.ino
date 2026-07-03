@@ -7,8 +7,9 @@ const int ledPin = 13;
 void setup() {
   pinMode(ledPin, OUTPUT);
   digitalWrite(ledPin, HIGH);
+  Serial.begin(9600);      
 
-  while (millis() < 5000 ){
+  while (millis() < 5000 ){ // move hand up and down, change to conditions
     sensorValue = analogRead(A0);
     if(sensorValue > sensorHigh){
       sensorHigh = sensorValue;
@@ -18,6 +19,10 @@ void setup() {
     }
   }
   digitalWrite(ledPin,LOW); // turn off the LED
+  Serial.println("LowValue: ");
+  Serial.println(sensorLow);
+  Serial.println("HighValue: ");
+  Serial.print(sensorHigh);
 }
 
 void loop() {
